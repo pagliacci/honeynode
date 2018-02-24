@@ -1,6 +1,5 @@
 import pyinotify
 import json
-from geoip import geolite2
 import geoip2
 import geoip2.database
 import requests
@@ -15,7 +14,7 @@ class MyEventHandler(pyinotify.ProcessEvent):
 def main():
     # watch manager
     wm = pyinotify.WatchManager()
-    wm.add_watch('/home/pagliacci/pshitt/passwords.json', pyinotify.ALL_EVENTS, rec=True)
+    wm.add_watch('passwords.json', pyinotify.ALL_EVENTS, rec=True)
 
     # event handler
     eh = MyEventHandler()
@@ -25,12 +24,12 @@ def main():
     notifier.loop()
 
 def send_request():
-    with open('/home/pagliacci/pshitt/passwords.json') as myfile:
+    with open('passwords.json') as myfile:
         json_string = json.loads(list(myfile)[-1])
         time = strftime("%Y-%m-%d %H:%M:%S")
         attack_type = "ssh_bruteforce"
         src_ip = json_string['src_ip']
-        dst_ip = "91.142.94.74"
+        dst_ip = "ENTER IP ADDRESS HERE"
         login = json_string['username']
         password = json_string['password']
         src_country, src_city, src_latitude, src_longitude = geoposition(src_ip)
