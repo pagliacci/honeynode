@@ -1,5 +1,5 @@
 #!/bin/bash
-apt-get install python
+apt-get install python -y
 cd honeynode
 python get-pip.py
 pip install paramiko
