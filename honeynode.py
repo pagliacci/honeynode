@@ -13,6 +13,7 @@ class MyEventHandler(pyinotify.ProcessEvent):
         print "MODIFY event:", event.pathname
 	send_request()
 
+	
 def main():
     # watch manager
     wm = pyinotify.WatchManager()
@@ -25,6 +26,7 @@ def main():
     notifier = pyinotify.Notifier(wm, eh)
     notifier.loop()
 
+	
 def send_request():
     with open('/home/pagliacci/pshitt/passwords.json') as myfile:
         json_string = json.loads(list(myfile)[-1])
@@ -50,6 +52,7 @@ def send_request():
 #        print src_city
             print "request sent"
 
+	
 def geoposition(ip):
     #match = geolite2.lookup(ip)
     #return str(match.location) + str(match.country)
